@@ -14,10 +14,14 @@
     },
     "autoload": {
         "psr-4": {
-            "TNM\\Msisdn\\" : "src/"
+            "TNM\\Msisdn\\" : "src/",
+            "Tests": "tests"
         },
         "files": [
             "src/helpers.php"
         ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
     }
 }

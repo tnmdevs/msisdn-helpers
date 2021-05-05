@@ -1,16 +1,9 @@
 <?php
-
-
 namespace TNM\Msisdn;
 
 
-class Msisdn extends BaseMsisdn
+class TNMMsisdn extends BaseMsisdn
 {
-
-    public function valid(): bool
-    {
-        return false;
-    }
 
     public function length(): int
     {
@@ -19,6 +12,6 @@ class Msisdn extends BaseMsisdn
 
     public function operatorIds(): array
     {
-        return ['88', '31'];
+        return ['88','31'];
     }
 }
