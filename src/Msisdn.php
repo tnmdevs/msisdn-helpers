@@ -21,13 +21,8 @@ class Msisdn
 
     public function validTnmNumber(): bool
     {
-        return $this->matchesPattern("/^(0)(((88)\d{7})|(31\d{7}))$/");
-    }
-
-    private function matchesPattern(string $pattern): bool
-    {
         try {
-            return preg_match($pattern, $this->msisdn);
+            return preg_match("/^(0)(((88)\d{7})|(31\d{7}))$/", $this->msisdn);
         } catch (Exception $e) {
             return false;
         }
