@@ -25,6 +25,8 @@ class MsisdnFactory
         switch ($this->getOperatorName()) {
             case 'TNM':
                 return new TNMMsisdn($this->msisdn);
+            case 'AIRTEL':
+                return new AirtelMsisdn($this->msisdn);
             default:
                 return new Msisdn($this->msisdn);
         }
