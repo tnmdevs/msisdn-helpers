@@ -7,6 +7,7 @@ namespace TNM\Msisdn;
 use TNM\Msisdn\Operators\AccessMsisdn;
 use TNM\Msisdn\Operators\AirtelMsisdn;
 use TNM\Msisdn\Operators\Msisdn;
+use TNM\Msisdn\Operators\MTLMsisdn;
 use TNM\Msisdn\Operators\TNMMsisdn;
 
 class MsisdnFactory
@@ -34,6 +35,8 @@ class MsisdnFactory
                 return new AirtelMsisdn($this->msisdn);
             case 'ACCESS':
                 return new AccessMsisdn($this->msisdn);
+            case 'MTL':
+                return new MTLMsisdn($this->msisdn);
             default:
                 return new Msisdn($this->msisdn);
         }
