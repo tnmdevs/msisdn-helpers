@@ -1,5 +1,9 @@
 <?php
 
+namespace TNM\Msisdn;
+
+
+use Exception;
 
 class Msisdn
 {

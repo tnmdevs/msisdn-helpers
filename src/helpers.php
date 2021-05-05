@@ -1,5 +1,7 @@
 <?php
 
+use TNM\Msisdn\Msisdn;
+
 if (!function_exists('vgs_phone_number')) {
     function vgs_phone_number($phone_number): string
     {
