@@ -17,7 +17,7 @@ if (!function_exists('humanized_phone_number')) {
 }
 
 if (!function_exists('subscriber_number')) {
-    function subscriber_number($phone_number)
+    function subscriber_number($phone_number): string
     {
         return msisdn($phone_number)->toString();
     }
@@ -47,7 +47,7 @@ if (!function_exists('is_valid_tnm_number')) {
 if (!function_exists('cbs_phone_number')) {
     function cbs_phone_number(string $msisdn): string
     {
-        return msisdn($msisdn)->toCbsFormat();
+        return msisdn($msisdn)->toString();
     }
 }
 

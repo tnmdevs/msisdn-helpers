@@ -28,11 +28,6 @@ class Msisdn
         }
     }
 
-    public function toCbsFormat(): string
-    {
-        return $this->msisdn;
-    }
-
     public function humanized(): string
     {
         return '0' . $this->msisdn;
