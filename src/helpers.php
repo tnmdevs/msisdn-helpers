@@ -19,7 +19,7 @@ if (!function_exists('humanized_phone_number')) {
 }
 
 if (!function_exists('subscriber_number')) {
-    function subscriber_number($phone_number):string
+    function subscriber_number($phone_number): string
     {
         return msisdn($phone_number)->toString();
     }
