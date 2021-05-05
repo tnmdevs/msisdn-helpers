@@ -2,7 +2,7 @@
 
 use TNM\Msisdn\BaseMsisdn;
 use TNM\Msisdn\MsisdnFactory;
-use TNM\Msisdn\TNMMsisdn;
+use TNM\Msisdn\Operators\TNMMsisdn;
 
 if (!function_exists('vgs_phone_number')) {
     function vgs_phone_number($phone_number): string

@@ -2,8 +2,9 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use TNM\Msisdn\AirtelMsisdn;
-use TNM\Msisdn\TNMMsisdn;
+use TNM\Msisdn\Operators\AirtelMsisdn;
+use TNM\Msisdn\Operators\TNMMsisdn;
+
 
 class MsisdnFactoryTest extends TestCase
 {

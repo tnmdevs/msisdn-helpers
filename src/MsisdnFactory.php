@@ -4,6 +4,10 @@
 namespace TNM\Msisdn;
 
 
+use TNM\Msisdn\Operators\AirtelMsisdn;
+use TNM\Msisdn\Operators\Msisdn;
+use TNM\Msisdn\Operators\TNMMsisdn;
+
 class MsisdnFactory
 {
     private string $msisdn;

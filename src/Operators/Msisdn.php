@@ -1,8 +1,10 @@
 <?php
 
 
-namespace TNM\Msisdn;
+namespace TNM\Msisdn\Operators;
 
+
+use TNM\Msisdn\BaseMsisdn;
 
 class Msisdn extends BaseMsisdn
 {

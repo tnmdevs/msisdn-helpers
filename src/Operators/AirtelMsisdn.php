@@ -1,8 +1,10 @@
 <?php
-namespace TNM\Msisdn;
 
 
-class TNMMsisdn extends BaseMsisdn
+namespace TNM\Msisdn\Operators;
+use TNM\Msisdn\BaseMsisdn;
+
+class AirtelMsisdn extends BaseMsisdn
 {
 
     public function length(): int
@@ -12,6 +14,6 @@ class TNMMsisdn extends BaseMsisdn
 
     public function operatorIds(): array
     {
-        return ['88','31'];
+        return ['99'];
     }
 }
