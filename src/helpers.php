@@ -1,7 +1,7 @@
 <?php
 
 use TNM\Msisdn\IMsisdn;
-use TNM\Msisdn\InvalidMsisdnException;
+use TNM\Msisdn\MsisdnException;
 use TNM\Msisdn\MsisdnFactory;
 use TNM\Msisdn\Operators\DefaultMsisdn;
 use TNM\Msisdn\Operators\TNMMsisdn;
@@ -61,7 +61,7 @@ if (!function_exists('msisdn')) {
     {
         try {
             return (new MsisdnFactory($msisdn))->make();
-        } catch (InvalidMsisdnException $e) {
+        } catch (MsisdnException $e) {
             return new DefaultMsisdn();
         }
     }

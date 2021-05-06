@@ -16,7 +16,7 @@ class MsisdnFactory
     }
 
     /**
-     * @throws InvalidMsisdnException
+     * @throws MsisdnException
      */
     public function make(): IMsisdn
     {
@@ -31,7 +31,7 @@ class MsisdnFactory
 
         }
 
-        throw new InvalidMsisdnException();
+        throw new MsisdnException();
     }
 
     private function stripCharacters()

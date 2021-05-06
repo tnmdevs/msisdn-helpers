@@ -6,7 +6,7 @@ namespace TNM\Msisdn;
 
 use Exception;
 
-class InvalidMsisdnException extends Exception
+class MsisdnException extends Exception
 {
 
 }
