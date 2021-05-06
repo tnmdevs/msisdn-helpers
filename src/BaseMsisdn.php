@@ -8,30 +8,21 @@ abstract class BaseMsisdn implements IMsisdn
 {
     private string $msisdn;
 
-    public function __construct(string $msisdn)
+    protected function __construct(string $msisdn)
     {
-        $this->msisdn = $this->parse($msisdn);
+//        if (!$this->isCalledFromFactory())
+//            throw new MsisdnException(sprintf('MSISDN can only be initialized by the %s', MsisdnFactory::class));
+
+        $this->msisdn = $msisdn;
     }
 
-    private function parse(string $msisdn): string
-    {
-        return substr(preg_replace('/\D/', '', $msisdn), -1 * $this->length());
-    }
+//    private function isCalledFromFactory(): bool
+//    {
+//        var_dump(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2)[1]['file']); die;
+//        return preg_match('/MsisdnFactory\.php$/', debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2)[1]['file']);
+//    }
 
-    private function matchesOperatorId(): bool
-    {
-        foreach ($this->operatorIds() as $id)
-            if (preg_match("/^$id/", $this->msisdn)) return true;
-
-        return false;
-    }
-
-    public function valid(): bool
-    {
-        return $this->matchesOperatorId() && is_numeric($this->msisdn) && strlen($this->msisdn) === $this->length();
-    }
-
-    public function humanized(): string
+    public function humanize(): string
     {
         return sprintf('0%s', $this->msisdn);
     }
@@ -41,7 +32,7 @@ abstract class BaseMsisdn implements IMsisdn
         return $this->msisdn;
     }
 
-    public function internationalized(): string
+    public function internationalize(): string
     {
         return sprintf('265%s', $this->msisdn);
     }
@@ -53,6 +44,6 @@ abstract class BaseMsisdn implements IMsisdn
 
     public function toVgsFormat(): string
     {
-        return $this->internationalized();
+        return $this->internationalize();
     }
 }

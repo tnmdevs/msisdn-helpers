@@ -12,11 +12,11 @@ use TNM\Msisdn\Operators\TNMMsisdn;
 class Operator
 {
     private array $operators = [
-        '88' => TNMMsisdn::class,
-        '31' => TNMMsisdn::class,
-        '99' => AirtelMsisdn::class,
-        '212' => AccessMsisdn::class,
-        '1' => MTLMsisdn::class
+        '88' => ['type' => TNMMsisdn::class, 'length' => 9],
+        '31' => ['type' => TNMMsisdn::class, 'length' => 9],
+        '99' => ['type' => AirtelMsisdn::class, 'length' => 9],
+        '212' => ['type' => AccessMsisdn::class, 'length' => 9],
+        '1' => ['type' => MTLMsisdn::class, 'length' => 7],
     ];
 
     /**
@@ -27,13 +27,19 @@ class Operator
         return $this->operators;
     }
 
-    public function get(string $key): string
+    public function getType(string $key): string
     {
-        return $this->operators[$key];
+        return $this->operators[$key]['type'];
     }
 
     public function getRegexPattern(): string
     {
         return "/^(" . join('|', array_keys($this->all())) . ")/";
+    }
+
+    public function getLength(string $key)
+    {
+        return $this->operators[$key]['length'];
+
     }
 }

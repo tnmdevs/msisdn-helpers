@@ -7,14 +7,9 @@ use PHPUnit\Framework\TestCase;
 class MsisdnTest extends TestCase
 {
 
-    public function testValidNumber()
-    {
-        $this->assertTrue(msisdn('265888800900')->valid());
-    }
-
     public function testInternationalize()
     {
-        $this->assertEquals('265888800900', msisdn('888800900')->internationalized());
+        $this->assertEquals('265888800900', msisdn('888800900')->internationalize());
     }
 
     public function testCanParse()
@@ -24,7 +19,7 @@ class MsisdnTest extends TestCase
 
     public function testHumanise()
     {
-        $this->assertEquals('0888800900', msisdn('888800900')->humanized());
+        $this->assertEquals('0888800900', msisdn('888800900')->humanize());
     }
 
 

@@ -4,8 +4,6 @@
 namespace TNM\Msisdn;
 
 
-use TNM\Msisdn\Operators\DefaultMsisdn;
-
 class MsisdnFactory
 {
     private string $msisdn;
@@ -17,16 +15,23 @@ class MsisdnFactory
         $this->operator = new Operator();
     }
 
+    /**
+     * @throws InvalidMsisdnException
+     */
     public function make(): IMsisdn
     {
         $number = $this->stripCharacters();
 
         if (preg_match($this->operator->getRegexPattern(), $number, $matches)) {
-            $operator = $this->operator->get($matches[0]);
-            return new $operator($number);
+            $length = $this->operator->getLength($matches[0]);
+            if ($length === strlen($number)) {
+                $operator = $this->operator->getType($matches[0]);
+                return new $operator($number);
+            }
+
         }
 
-        return new DefaultMsisdn($number);
+        throw new InvalidMsisdnException();
     }
 
     private function stripCharacters()
