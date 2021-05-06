@@ -22,6 +22,7 @@ abstract class BaseMsisdn
     {
         foreach ($this->operatorIds() as $id)
             if (preg_match("/^$id/", $this->msisdn)) return true;
+
         return false;
     }
 

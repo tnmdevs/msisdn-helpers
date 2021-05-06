@@ -6,7 +6,7 @@ namespace TNM\Msisdn;
 
 use TNM\Msisdn\Operators\AccessMsisdn;
 use TNM\Msisdn\Operators\AirtelMsisdn;
-use TNM\Msisdn\Operators\Msisdn;
+use TNM\Msisdn\Operators\DefaultMsisdn;
 use TNM\Msisdn\Operators\MTLMsisdn;
 use TNM\Msisdn\Operators\TNMMsisdn;
 
@@ -38,15 +38,15 @@ class MsisdnFactory
             case 'MTL':
                 return new MTLMsisdn($this->msisdn);
             default:
-                return new Msisdn($this->msisdn);
+                return new DefaultMsisdn($this->msisdn);
         }
     }
 
     private function getOperatorName(): ?string
     {
-        foreach ($this->operatorIds as $operator => $ids) {
+        foreach ($this->operatorIds as $operator => $ids)
             if ($this->matchesOperatorId($ids)) return $operator;
-        }
+
         return null;
     }
 
@@ -54,6 +54,7 @@ class MsisdnFactory
     {
         foreach ($operatorIds as $id)
             if (preg_match("/^$id/", $this->msisdn)) return true;
+
         return false;
     }
 

@@ -6,7 +6,7 @@ namespace TNM\Msisdn\Operators;
 
 use TNM\Msisdn\BaseMsisdn;
 
-class Msisdn extends BaseMsisdn
+class DefaultMsisdn extends BaseMsisdn
 {
 
     public function valid(): bool
@@ -16,11 +16,11 @@ class Msisdn extends BaseMsisdn
 
     public function length(): int
     {
-        return 9;
+        return 0;
     }
 
     public function operatorIds(): array
     {
-        return ['88', '31'];
+        return [];
     }
 }
