@@ -13,7 +13,7 @@ use TNM\Msisdn\Operators\TNMMsisdn;
 class MsisdnFactory
 {
     private string $msisdn;
-    private array $operators = [
+    private array $operatorIds = [
         'TNM' => ['88', '31'],
         'AIRTEL' => ['99'],
         'ACCESS' => ['212'],
@@ -44,7 +44,7 @@ class MsisdnFactory
 
     private function getOperatorName(): ?string
     {
-        foreach ($this->operators as $operator => $ids) {
+        foreach ($this->operatorIds as $operator => $ids) {
             if ($this->matchesOperatorId($ids)) return $operator;
         }
         return null;
@@ -53,7 +53,7 @@ class MsisdnFactory
     private function matchesOperatorId(array $operatorIds): bool
     {
         foreach ($operatorIds as $id)
-            if (substr($this->msisdn, 0, strlen($id)) === $id) return true;
+            if (preg_match("/^$id/", $this->msisdn)) return true;
         return false;
     }
 

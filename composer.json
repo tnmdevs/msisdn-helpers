@@ -15,7 +15,7 @@
     "autoload": {
         "psr-4": {
             "TNM\\Msisdn\\" : "src/",
-            "Tests": "tests"
+            "Tests\\": "tests"
         },
         "files": [
             "src/helpers.php"

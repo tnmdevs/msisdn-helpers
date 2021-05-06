@@ -21,7 +21,7 @@ abstract class BaseMsisdn
     private function matchesOperatorId(): bool
     {
         foreach ($this->operatorIds() as $id)
-            if (substr($this->msisdn, 0, strlen($id)) === $id) return true;
+            if (preg_match("/^$id/", $this->msisdn)) return true;
         return false;
     }
 
