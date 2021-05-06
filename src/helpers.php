@@ -1,6 +1,6 @@
 <?php
 
-use TNM\Msisdn\BaseMsisdn;
+use TNM\Msisdn\IMsisdn;
 use TNM\Msisdn\MsisdnFactory;
 use TNM\Msisdn\Operators\TNMMsisdn;
 
@@ -42,7 +42,7 @@ if (!function_exists('generate_key')) {
 if (!function_exists('is_valid_tnm_number')) {
     function is_valid_tnm_number(string $number): bool
     {
-        $msisdn=msisdn($number);
+        $msisdn = msisdn($number);
         return $msisdn->valid() && $msisdn instanceof TNMMsisdn;
     }
 }
@@ -56,7 +56,7 @@ if (!function_exists('cbs_phone_number')) {
 
 
 if (!function_exists('msisdn')) {
-    function msisdn(string $msisdn) : BaseMsisdn
+    function msisdn(string $msisdn): IMsisdn
     {
         return (new MsisdnFactory($msisdn))->make();
     }

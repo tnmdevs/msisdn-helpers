@@ -9,9 +9,9 @@ use TNM\Msisdn\Operators\AirtelMsisdn;
 use TNM\Msisdn\Operators\MTLMsisdn;
 use TNM\Msisdn\Operators\TNMMsisdn;
 
-class Operators
+class Operator
 {
-    private static array $operators = [
+    private array $operators = [
         '88' => TNMMsisdn::class,
         '31' => TNMMsisdn::class,
         '99' => AirtelMsisdn::class,
@@ -22,8 +22,18 @@ class Operators
     /**
      * @return array|string[]
      */
-    public static function all(): array
+    public function all(): array
     {
-        return self::$operators;
+        return $this->operators;
+    }
+
+    public function get(string $key): string
+    {
+        return $this->operators[$key];
+    }
+
+    public function getRegexPattern(): string
+    {
+        return "/^(" . join('|', array_keys($this->all())) . ")/";
     }
 }

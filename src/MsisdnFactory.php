@@ -9,22 +9,28 @@ use TNM\Msisdn\Operators\DefaultMsisdn;
 class MsisdnFactory
 {
     private string $msisdn;
+    private Operator $operator;
 
     public function __construct(string $msisdn)
     {
-        $this->msisdn = $this->parse($msisdn);
+        $this->msisdn = $msisdn;
+        $this->operator = new Operator();
     }
 
-    public function make(): BaseMsisdn
+    public function make(): IMsisdn
     {
-        foreach (Operators::all() as $id => $operator)
-            if (preg_match("/^$id/", $this->msisdn)) return new $operator($this->msisdn);
+        $number = $this->stripCharacters();
 
-        return new DefaultMsisdn($this->msisdn);
+        if (preg_match($this->operator->getRegexPattern(), $number, $matches)) {
+            $operator = $this->operator->get($matches[0]);
+            return new $operator($number);
+        }
+
+        return new DefaultMsisdn($number);
     }
 
-    private function parse(string $msisdn): string
+    private function stripCharacters()
     {
-        return preg_replace('/^(265|0)/', '', preg_replace('/\D/', '', $msisdn));
+        return preg_replace('/^(265|0)/', '', preg_replace('/\D/', '', $this->msisdn));
     }
 }

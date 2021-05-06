@@ -16,6 +16,12 @@ class MsisdnFactoryTest extends TestCase
         $this->assertInstanceOf(TNMMsisdn::class, msisdn('+265 888 800 900'));
     }
 
+//    public function test_long_input_string()
+//    {
+//        var_dump((new TNMMsisdn('+265 888 800 900-900900'))->valid()); die;
+//        $this->assertInstanceOf(TNMMsisdn::class, msisdn('+265 88080 800 900-900'));
+//    }
+
     public function test_parse_correct_msisdn_class_airtel()
     {
         $this->assertInstanceOf(AirtelMsisdn::class, msisdn('+265 998 800 900'));

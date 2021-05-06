@@ -4,7 +4,7 @@
 namespace TNM\Msisdn;
 
 
-abstract class BaseMsisdn
+abstract class BaseMsisdn implements IMsisdn
 {
     private string $msisdn;
 
@@ -55,8 +55,4 @@ abstract class BaseMsisdn
     {
         return $this->internationalized();
     }
-
-    abstract public function length(): int;
-
-    abstract public function operatorIds(): array;
 }
