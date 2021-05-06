@@ -6,6 +6,7 @@ namespace TNM\Msisdn;
 
 abstract class BaseMsisdn implements IMsisdn
 {
+    use Formatters;
     private string $msisdn;
 
     /**
@@ -14,7 +15,7 @@ abstract class BaseMsisdn implements IMsisdn
     protected function __construct(string $msisdn)
     {
         if (!$this->isCalledFromFactory())
-            throw new MsisdnException(sprintf('MSISDN can only be initialized by %s', MsisdnFactory::class));
+            throw new MsisdnException(sprintf('MSISDN can only be initialized by %s\'s make() method', MsisdnFactory::class));
 
         $this->msisdn = $msisdn;
     }
@@ -40,30 +41,5 @@ abstract class BaseMsisdn implements IMsisdn
             return null;
         }, debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS));
         return !!preg_match("/(" . join('|', $methods) . ")/", 'make');
-    }
-
-    public function humanize(): string
-    {
-        return sprintf('0%s', $this->msisdn);
-    }
-
-    public function toString(): string
-    {
-        return $this->msisdn;
-    }
-
-    public function internationalize(): string
-    {
-        return sprintf('265%s', $this->msisdn);
-    }
-
-    public function toCbsFormat(): string
-    {
-        return $this->toString();
-    }
-
-    public function toVgsFormat(): string
-    {
-        return $this->internationalize();
     }
 }

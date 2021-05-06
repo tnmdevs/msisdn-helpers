@@ -23,12 +23,10 @@ class MsisdnFactory
         $number = $this->stripCharacters();
 
         if (preg_match($this->operator->getRegexPattern(), $number, $matches)) {
-            $length = $this->operator->getLength($matches[0]);
-            if ($length === strlen($number)) {
+            if ($this->operator->getLength($matches[0]) === strlen($number)) {
                 $operator = $this->operator->getType($matches[0]);
                 return new $operator($number);
             }
-
         }
 
         throw new MsisdnException();
