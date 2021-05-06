@@ -7,7 +7,7 @@ use TNM\Msisdn\Operators\TNMMsisdn;
 if (!function_exists('vgs_phone_number')) {
     function vgs_phone_number($phone_number): string
     {
-        return msisdn($phone_number)->internationalized();
+        return msisdn($phone_number)->toVgsFormat();
     }
 }
 
@@ -50,7 +50,7 @@ if (!function_exists('is_valid_tnm_number')) {
 if (!function_exists('cbs_phone_number')) {
     function cbs_phone_number(string $msisdn): string
     {
-        return msisdn($msisdn)->toString();
+        return msisdn($msisdn)->toCbsFormat();
     }
 }
 

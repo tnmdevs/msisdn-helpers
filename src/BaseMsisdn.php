@@ -33,7 +33,7 @@ abstract class BaseMsisdn
 
     public function humanized(): string
     {
-        return '0' . $this->msisdn;
+        return sprintf('0%s', $this->msisdn);
     }
 
     public function toString(): string
@@ -43,7 +43,17 @@ abstract class BaseMsisdn
 
     public function internationalized(): string
     {
-        return '265' . $this->msisdn;
+        return sprintf('265%s', $this->msisdn);
+    }
+
+    public function toCbsFormat(): string
+    {
+        return $this->toString();
+    }
+
+    public function toVgsFormat(): string
+    {
+        return $this->internationalized();
     }
 
     abstract public function length(): int;
