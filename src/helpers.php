@@ -1,5 +1,6 @@
 <?php
 
+use TNM\Msisdn\BaseMsisdn;
 use TNM\Msisdn\IMsisdn;
 use TNM\Msisdn\MsisdnException;
 use TNM\Msisdn\MsisdnFactory;
@@ -10,6 +11,13 @@ if (!function_exists('vgs_phone_number')) {
     function vgs_phone_number($phone_number): string
     {
         return msisdn($phone_number)->toVgsFormat();
+    }
+}
+
+if (!function_exists('is_valid_malawian_number')) {
+    function is_valid_malawian_number(string $msisdn): bool
+    {
+        return msisdn($msisdn) instanceof BaseMsisdn;
     }
 }
 
@@ -32,11 +40,9 @@ if (!function_exists('generate_key')) {
     {
         $characters = $numeric ? "0123456789" : '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
 
-        $charactersLength = strlen($characters);
         $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
+        for ($i = 0; $i < $length; $i++) $randomString .= $characters[rand(0, strlen($characters) - 1)];
+
         return $randomString;
     }
 }
