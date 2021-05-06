@@ -8,17 +8,6 @@ use TNM\Msisdn\IMsisdn;
 
 class DefaultMsisdn implements IMsisdn
 {
-
-    public function length(): int
-    {
-        return 0;
-    }
-
-    public function operatorIds(): array
-    {
-        return [];
-    }
-
     public function humanize(): string
     {
         return '';

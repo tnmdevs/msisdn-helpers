@@ -12,7 +12,7 @@ abstract class BaseMsisdn implements IMsisdn
     /**
      * @throws MsisdnException
      */
-    protected function __construct(string $msisdn)
+    public function __construct(string $msisdn)
     {
         if (!$this->isCalledFromFactory())
             throw new MsisdnException(sprintf('MSISDN can only be initialized by %s\'s make() method', MsisdnFactory::class));

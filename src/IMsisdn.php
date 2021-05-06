@@ -4,10 +4,6 @@ namespace TNM\Msisdn;
 
 interface IMsisdn
 {
-    public function length(): int;
-
-    public function operatorIds(): array;
-
     public function humanize(): string;
 
     public function toString(): string;
