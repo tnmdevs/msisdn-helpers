@@ -7,6 +7,7 @@ namespace TNM\Msisdn;
 abstract class BaseMsisdn implements IMsisdn
 {
     use Formatters;
+
     private string $msisdn;
 
     /**
@@ -22,24 +23,16 @@ abstract class BaseMsisdn implements IMsisdn
 
     private function isCalledFromFactory(): bool
     {
-        return $this->traceContainsFactoryClass() && $this->traceContainsFactoryMethod();
+        return $this->traceContainsFactory() && $this->traceContainsFactory('function');
     }
 
-    private function traceContainsFactoryClass(): bool
+    private function traceContainsFactory(string $filterBy = 'class'): bool
     {
-        $classes = array_map(function (array $step) {
-            if (array_key_exists('class', $step)) return $step['class'];
+        $options = array_map(function (array $step) use ($filterBy) {
+            if (array_key_exists($filterBy, $step)) return $step[$filterBy];
             return null;
         }, debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS));
-        return !!preg_match("/(" . join('|', $classes) . ")/", MsisdnFactory::class);
+        return !!preg_match("/(" . join('|', $options) . ")/", $filterBy === 'class' ? MsisdnFactory::class : 'make');
     }
 
-    private function traceContainsFactoryMethod(): bool
-    {
-        $methods = array_map(function (array $step) {
-            if (array_key_exists('function', $step)) return $step['function'];
-            return null;
-        }, debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS));
-        return !!preg_match("/(" . join('|', $methods) . ")/", 'make');
-    }
 }
