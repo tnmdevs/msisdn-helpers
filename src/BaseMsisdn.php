@@ -4,6 +4,8 @@
 namespace TNM\Msisdn;
 
 
+use ReflectionClass;
+
 abstract class BaseMsisdn implements IMsisdn
 {
     use Formatters;
@@ -23,16 +25,27 @@ abstract class BaseMsisdn implements IMsisdn
 
     private function isCalledFromFactory(): bool
     {
-        return $this->traceContainsFactory() && $this->traceContainsFactory('function');
+        return $this->arrayFirst(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS), function ($value) {
+            return $this->arrayKeysExist(['class', 'function'], $value)
+                && $value['function'] === 'make'
+                && $value['class'] === MsisdnFactory::class;
+        });
     }
 
-    private function traceContainsFactory(string $filterBy = 'class'): bool
+    private function arrayKeysExist(array $arrayKeys, array $array): bool
     {
-        $options = array_map(function (array $step) use ($filterBy) {
-            if (array_key_exists($filterBy, $step)) return $step[$filterBy];
-            return null;
-        }, debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS));
-        return !!preg_match("/(" . join('|', $options) . ")/", $filterBy === 'class' ? MsisdnFactory::class : 'make');
+        foreach ($arrayKeys as $key)
+            if (!in_array($key, array_keys($array))) return false;
+
+        return true;
+    }
+
+    private function arrayFirst(array $array, callable $callback): bool
+    {
+        foreach ($array as $value)
+            if ($callback($value)) return true;
+
+        return false;
     }
 
 }
