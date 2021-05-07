@@ -32,16 +32,14 @@ abstract class BaseMsisdn implements IMsisdn
 
     private function arrayKeysExist(array $arrayKeys, array $array): bool
     {
-        foreach ($arrayKeys as $key)
-            if (!in_array($key, array_keys($array))) return false;
+        foreach ($arrayKeys as $key) if (!in_array($key, array_keys($array))) return false;
 
         return true;
     }
 
     private function arrayFirst(array $array, callable $callback): bool
     {
-        foreach ($array as $value)
-            if ($callback($value)) return true;
+        foreach ($array as $value) if ($callback($value)) return true;
 
         return false;
     }
