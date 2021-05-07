@@ -1,4 +1,4 @@
-# MSISDN Helpers
+# Malawi Phone Number Helpers
 
 Phone number formatters and validator for all Mobile Networks in Malawi
 
