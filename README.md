@@ -27,17 +27,23 @@ FAN FACT: Even if you put a movie within the phone number, it will be parsed as 
 
 ### Humanize
 ```php
-msisdn('265-888-800-900')->humanize()
+msisdn('265-888-800-900')->humanize();
 // returns 0888800900
 ```
 ### Internationalize
 ```php
-msisdn('01800900')->internationalize()
+msisdn('01800900')->internationalize();
 // returns 2651800900
+```
+
+To add the international format prefix `+` symbol, pass `true` to `internationalize`
+```php
+msisdn('01800900')->internationalize(true);
+// returns +2651800900
 ```
 ### Base string
 ```php
-msisdn('0999800900')->toString()
+msisdn('0999800900')->toString();
 // returns 999800900
 ```
 
@@ -45,27 +51,30 @@ msisdn('0999800900')->toString()
 
 ### Valid TNM Number 
 ```php
-is_valid_tnm_number('01800900')
+is_valid_tnm_number('01800900');
 // returns false 
 ```
 ### Valid Malawian Number 
 ```php
-is_valid_malawian_number('01800900')
+is_valid_malawian_number('01800900');
 // returns true
 ```
 
 ### Valid MTL Number
+
 ```php
-msisdn('0999800900') instanceof TNM\Msisdn\MTLMsisdn
+use TNM\Msisdn\Operators\MTLMsisdn;
+
+msisdn('0999800900') instanceof MTLMsisdn;
 // return false
 
-msisdn('01800900') instanceof TNM\Msisdn\MTLMsisdn
+msisdn('01800900') instanceof MTLMsisdn;
 // return true
 ```
-With the method above, you can validate other classes: `TNM\Msisdn\AirtelMsisdn` and `TNM\Msisdn\AccessMsisdn`
+With the method above, you can validate other classes: `TNM\Msisdn\Operators\AirtelMsisdn` and `TNM\Msisdn\Operators\AccessMsisdn`
 
 ## Testing
 
-```php
+```terminal
 phpunit tests
 ```

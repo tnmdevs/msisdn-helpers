@@ -10,6 +10,7 @@ class MsisdnTest extends TestCase
     public function testInternationalize()
     {
         $this->assertEquals('265888800900', msisdn('888800900')->internationalize());
+        $this->assertEquals('+265888800900', msisdn('888800900')->internationalize(true));
     }
 
     public function testCanParse()
