@@ -16,9 +16,9 @@ trait Formatters
         return $this->msisdn;
     }
 
-    public function internationalize(): string
+    public function internationalize(bool $prefixed = false): string
     {
-        return sprintf('265%s', $this->msisdn);
+        return sprintf('%s265%s', $prefixed ? '+': '', $this->msisdn);
     }
 
     public function toCbsFormat(): string

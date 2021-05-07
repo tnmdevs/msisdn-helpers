@@ -18,7 +18,7 @@ class DefaultMsisdn implements IMsisdn
         return '';
     }
 
-    public function internationalize(): string
+    public function internationalize(bool $prefixed = false): string
     {
         return '';
     }

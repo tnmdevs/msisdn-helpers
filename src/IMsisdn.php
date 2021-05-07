@@ -8,7 +8,7 @@ interface IMsisdn
 
     public function toString(): string;
 
-    public function internationalize(): string;
+    public function internationalize(bool $prefixed = false): string;
 
     public function toCbsFormat(): string;
 
