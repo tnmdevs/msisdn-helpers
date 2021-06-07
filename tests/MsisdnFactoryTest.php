@@ -26,6 +26,7 @@ class MsisdnFactoryTest extends TestCase
     public function test_parse_correct_msisdn_class_airtel()
     {
         $this->assertInstanceOf(AirtelMsisdn::class, msisdn('+265 998 800 900'));
+        $this->assertInstanceOf(AirtelMsisdn::class, msisdn('+265 988 800 900'));
     }
 
     public function test_parse_correct_msisdn_class_access()
