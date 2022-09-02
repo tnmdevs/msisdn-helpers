@@ -13,6 +13,7 @@ class Operator
 {
     private array $operators = [
         '88' => ['type' => TNMMsisdn::class, 'length' => 9],
+        '89' => ['type' => TNMMsisdn::class, 'length' => 9],
         '31' => ['type' => TNMMsisdn::class, 'length' => 9],
         '99' => ['type' => AirtelMsisdn::class, 'length' => 9],
         '98' => ['type' => AirtelMsisdn::class, 'length' => 9],
