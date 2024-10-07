@@ -19,6 +19,7 @@ class Operator
         '98' => ['type' => AirtelMsisdn::class, 'length' => 9],
         '212' => ['type' => AccessMsisdn::class, 'length' => 9],
         '1' => ['type' => MTLMsisdn::class, 'length' => 7],
+        '111' => ['type' => MTLMsisdn::class, 'length' => 9],
     ];
 
     /**
